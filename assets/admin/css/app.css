@@ -7276,3 +7276,11 @@ a.icon-btn {
     height: 300px;
     padding: 20px;
 }
+
+
+
+.jobcard_table{
+    border: solid;
+    border-width: 1px;
+    border-color: grey;
+}
