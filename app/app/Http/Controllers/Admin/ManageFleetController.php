@@ -96,7 +96,7 @@ class ManageFleetController extends Controller
     }
 
     
-    public function updatemake(Request $request, $id){
+    public function updatemake2(Request $request, $id){
         $request->validate([
             'name'        => 'required|unique:units,name,'.$id,
         ]);
