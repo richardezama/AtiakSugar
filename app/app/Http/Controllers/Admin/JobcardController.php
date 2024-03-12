@@ -44,7 +44,8 @@ class JobcardController extends Controller
         $emptyMessage = 'No Records found';
         $pageTitle = 'Defect Form Details';     
         $users = Repair::where("id",$id)
-        ->with('assigned','operator','equipment','diognised','completedby','issuedby','testedBy','VerifiedBy','preparedby')
+        ->with('assigned','operator','equipment','diognised','completedby','issuedby','testedBy',
+        'VerifiedBy','preparedby')
         ->paginate(getPaginate());
         $extra_diognosis=[];
         $status=0;

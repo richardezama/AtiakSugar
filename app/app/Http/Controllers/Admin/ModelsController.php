@@ -53,16 +53,9 @@ class ModelsController extends Controller
             'name'        => 'required|unique:units,name,'.$id,
         ]);
         // return $request;
-        $estate = Unit::find($id);
+        $estate = Models::find($id);
         $estate->name = $request->name;
-        //$estate->estate_id = $request->estate_id;
-        $estate->bathrooms = $request->bathrooms;
-        $estate->bedrooms = $request->bedrooms;
-        $estate->floor = $request->floor;
-        $estate->block = $request->block;
-        $estate->nwsc = $request->nwsc;
-        $estate->umeme = $request->umeme;
-        $estate->rent = $request->rent;
+        $estate->make_id = $request->make_id;
         $estate->save();
         $notify[] = ['success','updated successfully'];
         return back()->withNotify($notify);

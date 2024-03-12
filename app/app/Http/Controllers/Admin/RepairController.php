@@ -405,7 +405,8 @@ $users=$users->where("status",'=',$request->status);
         $pageTitle = 'Defect Form Details';  
 
         $users = Repair::where("id",$id)
-        ->with('assigned','operator','equipment','diognised','completedby','issuedby','persons_assigned')
+        ->with('assigned','operator','equipment','diognised',
+        'completedby','issuedby','persons_assigned')
         ->paginate(getPaginate());
         $extra_diognosis=[];
         $status=0;
@@ -835,7 +836,7 @@ $users=$users->where("status",'=',$request->status);
                 {
                 $pstock=ProductStock::findOrFail($warehouse->id);
                 $qty=$warehouse->quantity;
-                if($qty<$line->quantity && sizeof($warehouse_balances)>1)
+                /*if($qty<$line->quantity && sizeof($warehouse_balances)>1)
                 {
                     if($prevbal=="")
                     {
@@ -863,7 +864,7 @@ $users=$users->where("status",'=',$request->status);
                  
                     //there is going to be a problem
                 }*/
-                else{
+               // else{
                     //dont reissue
                     if($prevbal=="")
                     {
@@ -878,7 +879,7 @@ $users=$users->where("status",'=',$request->status);
                     $can_next_warehouse=false;
                     $line->update();
                     }
-                }
+               // }
                 $y++;
             }
             else{

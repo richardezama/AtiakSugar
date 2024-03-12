@@ -24,12 +24,12 @@ class Repair extends Model
     }
 
     public function diognised(){
-        return $this->belongsTo(Admin::class, 'diognised_by');
+        return $this->hasOne(Admin::class,"id",'diognised_by');
     }
 
     
     public function completedby(){
-        return $this->belongsTo(Admin::class, 'completed_by');
+        return $this->hasOne(Admin::class, "id",'completed_by');
     }
 
     

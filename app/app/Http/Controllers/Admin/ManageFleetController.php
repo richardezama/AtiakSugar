@@ -94,4 +94,17 @@ class ManageFleetController extends Controller
         $notify[] = ['success','Make successfully Saved'];
         return back()->withNotify($notify);
     }
+
+    
+    public function updatemake(Request $request, $id){
+        $request->validate([
+            'name'        => 'required|unique:units,name,'.$id,
+        ]);
+        // return $request;
+        $estate = Make::find($id);
+        $estate->name = $request->name;
+        $estate->save();
+        $notify[] = ['success','Make Updated'];
+        return back()->withNotify($notify);
+    }
 }
