@@ -83,6 +83,7 @@ class ResetPasswordController extends Controller
         }
 
         $user->password = bcrypt($request->password);
+        $user->reset = 0;
         $user->save();
         $reset->status = 1;
         $reset->save();

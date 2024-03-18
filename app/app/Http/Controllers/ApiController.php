@@ -25,6 +25,8 @@ use Illuminate\Support\Str;
 class ApiController extends Controller
 {
 
+
+   
     public function getcounties($district){
         $list = County::orderBy('countyname','asc')->where('districtid',$district)->get();
         return $list;

@@ -24,6 +24,73 @@ use Illuminate\Support\Facades\Hash;
 
 class VehicleController extends Controller
 {
+    public function upload(){
+        $x=0;
+        $file = fopen('vehicles.csv', 'r');
+        while (($line = fgetcsv($file)) !== FALSE) {
+
+            $description=$line[0];
+            $department=$line[1];
+            $subdepartment=$line[2];
+            $classification=$line[3];
+            $supplier=$line[4];
+            $subdepartment=$line[5];
+            $category=$line[6];
+
+            $name=$line[7];
+            $confignee=$line[8];
+            $arrivaldate=$line[9];
+
+            $deliverystatus=$line[10];
+            $plate=$line[11];
+            $chasis=$line[12];
+            $engineNo=$line[13];
+            $serial=$line[14];
+            $yom=$line[15];
+
+
+
+            $vehicle=new Vehicle();
+            $vehicle->name=$name."-".$description;
+            $vehicle->chasis=$chasis;
+            $vehicle->make_id="1";
+            $vehicle->model_id="1";
+            $vehicle->operator_id="1";
+            $vehicle->number_plate=$plate;
+            $vehicle->engine_no=$engineNo;
+
+            $vehicle->department=$department;
+            $vehicle->subdepartment=$subdepartment;
+            $vehicle->description=$description;
+
+            $vehicle->confignee=$confignee;
+            $vehicle->yom=$yom;
+            $vehicle->checklist=json_encode([]);
+
+            $vehicle->classification=$classification;
+            $vehicle->yom=$yom;
+            $vehicle->supplier=$supplier;
+
+            $vehicle->dateofarrival=$arrivaldate;
+            $vehicle->deliverystatus=$deliverystatus;
+            $vehicle->supplier=$supplier;
+
+
+
+if($x>0)
+{
+            $vehicle->save();
+
+}
+
+$x++;
+
+        //  print_r($line);
+        }
+        fclose($file);
+    }
+
+
     public function list()
     {
         $pageTitle = 'All Cars';
@@ -87,8 +154,6 @@ class VehicleController extends Controller
         $vehicle->operator_id=$request->operator;
         $vehicle->number_plate=$request->number_plate;
         $vehicle->engine_no=$request->engine_no;
-
-        
         $vehicle->save();
 
         DB::commit();

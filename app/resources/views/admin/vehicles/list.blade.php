@@ -13,9 +13,7 @@
                             <thead>
                             <tr>
                                 <th>@lang('Name')</th>
-                                <th>@lang('Operator')</th>
-                                <th>@lang('Make')</th>
-                                <th>@lang('Model')</th>
+                   
                                 <th>@lang('Chasis')</th>
                                 <th>@lang('Number pLate')</th>
                                 <th>@lang('Action')</th>
@@ -25,29 +23,12 @@
                             @forelse($users as $user)
                             <tr>
                                 <td data-label="@lang('User')">
-                                    <span class="font-weight-bold">{{$user->name}}</span>
+                                    <span class="font-weight-bold">{{$user->chasis}}</span>
                                    
                                 </td>
 
-                                <td data-label="@lang('User')">
-                                    @if (isset($user->operator))
-                                    <span class="font-weight-bold">{{$user->operator->name}}</span>
-                                    @else
-                                    No operator
-                                    @endif
-                                    
-                                   
-                                </td>
-
-
-                                <td data-label="@lang('Make')">
-                                  {{ $user->make->name }}
-                                </td>
-                                <td data-label="@lang('Model')">
-                                    <span>
-                                        {{ $user->model->name }}
-                                    </span>
-                                </td>
+                               
+                               
                                 <td data-label="@lang('Chasis')">
                                     <span>
                                         {{ $user->chasis }}

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/clear', function(){
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
 });
+Route::post('/upload', 'ApiController@upload');
 
 //API
 Route::post('/districts/get', 'ApiController@districts');
@@ -260,6 +261,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
                //vehicles
 
                Route::name('vehicles.')->prefix('vehicles')->group(function(){
+                Route::get('upload', 'VehicleController@upload')->name('upload');
                 //makes
                 Route::get('makes', 'ManageFleetController@make')->name('makes');
                 Route::post('make/store', 'ManageFleetController@storemake')->name('make.store');

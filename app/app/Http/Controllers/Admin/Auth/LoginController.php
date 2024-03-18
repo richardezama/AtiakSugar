@@ -203,6 +203,9 @@ class LoginController extends Controller
             $this->sendEmail($msg,$email,$user->name);
             return back()->withNotify($notify);
         }
+        else    if ($user->reset == 1) {
+            return redirect()->route('admin.password');
+        }
         else{
         return redirect()->route('admin.dashboard');
         }

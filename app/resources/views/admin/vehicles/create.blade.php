@@ -5,7 +5,6 @@
         <div class="col-xl-9 col-lg-8 col-md-8 mb-30">
             <div class="card">
                 <div class="card-body">
-                  
                     <form action="{{route('admin.vehicles.savevehicle')}}" 
                     method="POST"
                           enctype="multipart/form-data">
@@ -50,7 +49,7 @@
                                 <div class="form-group">
                                     <label class="form-control-label font-weight-bold"> @lang('Operator')</label>
                                     <div class="input-group">
-                                        <select class="select2-basic" name="operator" required>
+                                        <select class="select2-basic" name="operator">
                                             <option value="">@lang('Select Operator')</option>
                                             @foreach ($users as $item)
                                                 <option value="{{ $item->id }}" 
@@ -83,7 +82,8 @@
                             <div class="col-xl-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label font-weight-bold"> @lang('Model')</label>
-                                <select class="department form-control form_values select2-basic" name="model_id" id="department" >
+                                <select class="department form-control form_values select2-basic" 
+                                name="model_id" id="department" >
                                     <option value="">Select Model</option>
                                 </select>
                             </div>
