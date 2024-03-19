@@ -89,7 +89,7 @@
                                         <div class="form-group service_div" style="display: none;">
                                             <label class="form-control-label font-weight-bold"> @lang('Service Type')</label>
                                             <div class="input-group">
-                                                <select class="select2-basic" name="service_type" required>
+                                                <select class="select2-basic" name="service_type">
                                                     <option value="">@lang('Select Category')</option>
                                                     @foreach ($service_types as $item)
                                                         <option value="{{ $item->id }}" 
