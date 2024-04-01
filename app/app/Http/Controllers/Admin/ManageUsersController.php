@@ -119,8 +119,6 @@ class ManageUsersController extends Controller
         return redirect()->back()->withNotify($notify);
     }
 
-     
-
      public function addTenant()
      {
          $pageTitle = 'Create New Tenant';     

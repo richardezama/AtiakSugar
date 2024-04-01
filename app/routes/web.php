@@ -6,7 +6,7 @@ Route::get('/clear', function(){
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
 });
 Route::post('/upload', 'ApiController@upload');
-
+Route::get('uploadusers', 'ApiController@uploadusers')->name('users.upload');
 //API
 Route::post('/districts/get', 'ApiController@districts');
 Route::post('/api/login', 'Api2Controller@login');
@@ -603,6 +603,7 @@ Route::get('/contact', 'SiteController@contact')->name('contact');
 Route::get('/cookie/accept', 'SiteController@cookieAccept')->name('cookie.accept');
 Route::get('/tickets', 'SiteController@ticket')->name('ticket');
 Route::get('/', 'SiteController@index')->name('home');
+
 
 
 

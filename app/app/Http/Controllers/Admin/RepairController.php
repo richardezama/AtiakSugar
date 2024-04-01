@@ -609,25 +609,27 @@ $users=$users->where("status",'=',$request->status);
     public function diognosis(Request $request, $id)
     {
         $request->validate([
-          
-            //'diagnosis.required'=>'diagnosis required',
-            
+            //'diagnosis.required'=>'diagnosis required', 
         ]);
         try{
-            DB::beginTransaction();
-  
+        DB::beginTransaction();
         //include last serviced on
         $admin=Auth::guard("admin")->user();
         $repair=Repair::findorFail($id);
         $repair->extra_diognosis=json_encode($request->diagnosis);
         $repair->diognised_on=time();
         $repair->diognised_by=$admin->id;
-        
         //logic of can submit
         $assigned=Assigned::where("repair_id",$id)
         ->where("user_id",$admin->id)->first();
         $assigned->completed=1;
         $assigned->update();
+
+        if($assigned==null)
+        {
+            $notify[] = ['warning', 'You arent assigned to handle this job'];
+            //return redirect()->back()->withNotify($notify);
+        }
 
 
         //check if there is anything pending
@@ -644,9 +646,6 @@ $users=$users->where("status",'=',$request->status);
             $repair->status=2;
             //move to the next stage
         }
-
-        
-
 
 
         //pending approval
@@ -685,7 +684,6 @@ $users=$users->where("status",'=',$request->status);
                 $recommendation="";
             }
            // $recommendation=$request->recommendation[$x];
-
             if(!$checked=="")
             {
             $output['item']=$item;
@@ -696,8 +694,6 @@ $users=$users->where("status",'=',$request->status);
             $x++;
             $cancheck=true;
         }
-
-
         $repair->update();
 
         if($cancheck)
@@ -708,8 +704,6 @@ $users=$users->where("status",'=',$request->status);
         $vehicle->save();
 
         }
- 
-
         DB::commit();
         /*
         $notify[] = ['success', 'Diognosis Complete'];

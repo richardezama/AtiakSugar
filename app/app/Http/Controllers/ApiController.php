@@ -11,6 +11,7 @@ use App\Models\Department;
 use App\Models\District;
 use App\Models\County;
 use App\Models\Unit;
+use App\Models\Admin;
 use App\Models\Models;
 use App\Models\Sub_county;
 use App\Models\Parish;
@@ -56,6 +57,39 @@ class ApiController extends Controller
         $list = Unit::orderBy('name','asc')->where('estate_id',$division)->get();
         return $list;
     }  
+
+    public function uploadusers(){
+        $x=0;
+        $file = fopen('employees.csv', 'r');
+        while (($line = fgetcsv($file)) !== FALSE) {
+
+             $name=$line[1];
+             $n=explode(" ",$name);
+             $username=strtolower($n[1].".".$n[2]);
+             $responsibility=$line[7];
+            $user= new Admin;
+            $user->telephone = "0";
+            $user->name = $name;
+            $user->email = "";
+            $user->verified =1;
+            $user->available =1;
+            $user->department_id ="1";
+            $user->password= bcrypt($username);
+            $user->username = $username;
+            $user->responsibility = $responsibility;
+            $user->role_id = "2";
+            $user->save();
+           
+
+$x++;
+
+        //  print_r($line);
+        }
+        fclose($file);
+    }
+
+     
+
 
 
 
