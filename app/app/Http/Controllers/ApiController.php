@@ -72,6 +72,7 @@ class ApiController extends Controller
             $user->name = $name;
             $user->email = "";
             $user->verified =1;
+            $user->reset =1;
             $user->available =1;
             $user->department_id ="1";
             $user->password= bcrypt($username);
@@ -79,7 +80,6 @@ class ApiController extends Controller
             $user->responsibility = $responsibility;
             $user->role_id = "2";
             $user->save();
-           
 
 $x++;
 
