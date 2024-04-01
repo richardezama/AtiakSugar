@@ -79,7 +79,7 @@ class ApiController extends Controller
             $user->username = $username;
             $user->responsibility = $responsibility;
             $user->role_id = "2";
-            $user->save();
+            //$user->save();
 
 $x++;
 
